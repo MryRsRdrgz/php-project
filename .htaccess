@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+
+    RewriteEngine On
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Restrict php files direct access
+    RewriteCond %{THE_REQUEST} ^.+?\ [^?]+\.session.php[?\ ]
+    RewriteRule \.session.php$ - [F]
+    RewriteCond %{THE_REQUEST} ^.+?\ [^?]+\.function.php[?\ ]
+    RewriteRule \.function.php$ - [F]
+
+</IfModule>
